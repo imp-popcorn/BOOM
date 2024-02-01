@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+        <title>Your Paper Title</title>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+        "HTML-CSS": { availableFonts: ["TeX"] },
+        TeX: { extensions: ["AMSmath.js", "AMSsymbols.js", "boldsymbol.js", "mhchem.js"] }
+        });
+    </script>
+   
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+        .roman-numeral {
+        font-family: 'Times New Roman', Times, serif; /* 使用罗马字体 */
+        font-size: 16px; /* 设置字体大小 */
+        }
+
+        header {
+            background-color: white;
+            padding: 30px 0;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            color: black;
+            font-size: 33px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        /* h3 {
+            color: #ea7909;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }  */
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: block;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        figure {
+            margin: 20px 0;
+        }
+        figcaption {
+            color: #777;
+            font-style: italic;
+            text-align: center; /* 设置对齐方式为居中 */
+    /* 或者使用其他值，如 left（左对齐）、right（右对齐） */
+            font-size: 16px;
+        }
+        footer {
+            background-color: white;
+            padding: 20px 0;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="white-space: pre-line;">
+            Towards a Theoretical Understanding <br> of Semi-Supervised Learning under Class Distribution Mismatch
+        </h1>
+        <div class="author">
+            <p>Pan Du<sup class="superscript">1</sup>, Suyun Zhao<sup class="superscript">1</sup>, Puhui Tan<sup class="superscript">2</sup>, Zisen Sheng<sup class="superscript">1</sup>,  Zeyu Gan<sup class="superscript">1</sup>, Hong Chen<sup class="superscript">1</sup>, Cuiping Li<sup class="superscript">1</sup></p>
+            <div class="affiliation">
+                <p><sup class="superscript">1</sup>School of Information, Renmin University of China, Beijing, 100872, China</p>
+                <p><sup class="superscript">2</sup>School of Statistics, Renmin University of China, Beijing, 100872, China</p>
+                <!-- Add more affiliations as needed -->
+            </div>
+        </div>
+        <p>Contact: zhaosuyun@ruc.edu.cn</p>
+    </header>
+
+    <div class="container">
+        <section id="abstract">
+            <h2>1. Abstract</h2>
+            <!-- <span style="color: red;">red</span>  -->
+            <p>Semi-supervised learning (SSL) confronts a formidable challenge under class distribution mismatch, \textcolor{blue}{\text{wherein}} unlabeled data contain numerous categories absent in the labeled dataset. \textcolor{red}{Traditional SSL methods undergo performance deterioration in such mismatch scenarios} \textcolor{blue}{due to the invasion of instances from unknown categories.} \textcolor{red}{Despite some efforts to enhance SSL} \textcolor{blue}{by detecting and/or filtering such invading instances, the theoretical understanding of SSL under class distribution mismatch is still under study. Accordingly, in this} \textcolor{red}{work},  \textcolor{red}{we propose \textbf{B}i-\textbf{O}bjective \textbf{O}ptimization \textbf{M}echanism (BOOM) to theoretically analyze the excess risk between empirical optimal solution and population-level optimal solution.} Specifically, BOOM reveals that SSL error is the essential contributor behind excess risk, resulting from the incorrect assignment of pseudo-labels to target category instances (pseudo-labeling error) and the illegal invasion by instances with unknown categories (invasion error). \textcolor{red}{Subsequently, to alleviate both errors, BOOM  identifies crafting high-quality pseudo-labels and adaptive weights are the two primary optimization objectives and shows the fundamental quantities influencing these objectives. Consequently, we propose an approach to penalize these quantities, establishing a strong baseline under class distribution mismatch. Extensive experiments on benchmark and real datasets confirm the effectiveness of our proposed algorithm. }</p>
+        </section>
+
+        <section id="problem">
+            <h2>2. Problem Defination</h2>
+            <ul>
+                <li> <span style="color: green;"><u>(Section <span class="roman-numeral">I & Subsection III-A</span>)</u></span> This paper concentrates on SSL under class distribution mismatch, where <span style="color: blue;">the unlabeled data contains unknown categories that are absent in the labeled dataset</span>, as illustrated in Figure 1.</li>
+                <div class="img" style="text-align:center">
+                    <img class="img_responsive" src="./class_distribution.png" alt="class distribution" style="margin:auto;max-width:40%">
+                    <figcaption>Figure 1: Example of class distribution mismatch. The unlabeled data contains categories that are unseen in labeled ones.</figcaption>
+                </div>
+                <br>
+                <li> <span style="color: green;"><u>(Subsection <span class="roman-numeral">III-A</span>)</u></span> The ultimate goal of this paper is to <span style="color: blue;">train a $K$-way target classifier by leveraging both unlabeled and labeled data in an SSL manner</span>, where $K$ represents the number of target categories. The hope is that the target classifier, which minimizes the empirical risk concerning both labeled and unlabeled data, is also <span style="color: blue;">a risk minimizer with respect to the population distribution from the target categories.</span>
+                </li>
+            </ul>
+            
+        </section>
+
+        <section id="main-results">
+            <h2>3. Main Results</h2>
+            <p> We propose a theoretical analysis of SSL under class distribution mismatch, named BOOM. </p>
+            <ul>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-B</span>)</u></span> <span style="color: red;">Excess Risk Analysis.</span> 
+                <br>
+                BOOM decouple the excess risk into four compoments: the generalization gap of $\hat h$, represented by $\mathcal{G}_1$; the concentration error, represented by $\mathcal{G}_2$; the empirical risk minimization error (ERM error), represented by $\mathcal{G}_3$; and the SSL error.
+                    $$
+                    \begin{aligned}
+                        & \mathcal{L}(\hat h; \tilde{\textbf{w}}) - \mathcal{L}(h^*; \tilde{\textbf{w}})\\
+                        & = \underbrace{[ \mathcal{L}(\hat h; \tilde{\textbf{w}}) - \hat{\mathcal{L}}_{P}(\hat h; \textbf{w})]}_{\mathbf{\mathcal{G}_1}} 
+                        + \underbrace{[\hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}}) - \mathcal{L}(h^*; \tilde{\textbf{w}})]}_{\mathbf{\mathcal{G}_2}}  \\
+                        & + \underbrace{[\hat{\mathcal{L}}_{P}(\hat h; \textbf{w}) -\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}})]}_{\mathcal{G}_3} 
+                        +  \underbrace{[\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})]}_{\mathbf{SSL \ error}}, 
+                    \end{aligned}
+                $$
+                <br>
+                BOOM indicates <span style="color: blue;">the SSL error is an essential component concerning the excess risk</span> and is specific to the scenario of class distribution mismatch, primarily resulting from the inconsistency between datasets P and S.
+                <br>
+                <br>
+                </li>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span> <span style="color: red;">Theorem 1: Empirical Upper Bound for SSL Error.</span>
+                    <br>
+                    Let $U=\left\{(\textbf{x}, \textbf{y})|(\textbf{x}, \textbf{y}) \in P, \textbf{x} \in \mathcal{X}_u\right\}$ denote a set of instances with size $n-s$, and $J$ represent the set $\left\{(\textbf{x}_i, \textbf{y}_i, {\hat{\textbf{y}}}_i)\right\}_{i=1}^s$ where $(\textbf{x}_i, {\hat{\textbf{y}}}_i) \in P\backslash U$ and $(\textbf{x}_i, \textbf{y}_i)\in S$. Assume the loss function $\ell(\cdot, \textbf{y})$ is Lipschitz continuous with a constant ${\lambda}^l$ for all $\textbf{y}$, $h^*$, and $\hat h$, and bounded by $H$ for all $\mathcal{Y} \times \mathcal{Y}$, we have:	
+                    $$
+                        \begin{aligned}
+                            &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
+                            & \le   \underbrace{\frac{1}{s}\sum_{(\textbf{x}_i,\textbf{y}_i, {\hat{\textbf{y}}}_i)\in J} \left[w_i {\lambda}^l\| {\hat{\textbf{y}}}_i - \textbf{y}_i \|_2 + \|(w_i-\epsilon)H \|_2 \right]}_{\text{Pseudo-labeling error}}\\
+                            & +   \underbrace{\frac{1}{n-s}\sum_{(\textbf{x}_i, {\hat{\textbf{y}}}_i)\in U}w_iH}_{\text{Invasion error}}.
+                        \end{aligned}
+                    $$
+                    <br>
+                    Theorem 1 empirically disentangles <span style="color: blue;">SSL error into pseudo-labeling error and invasion error</span>, providing a foundational theoretical analysis under class distribution mismatch. 
+                    <br>
+                    <br>
+                </li>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-D</span>)</u></span> <span style="color: red;">Theorem 2: Sampling Bias-Free Upper Bound for SSL Error.</span>
+                    <br>
+                    Let $\Phi(\textbf{x}):\mathcal{X}\rightarrow {\mathbb{R}}^K$ denote a labeling function that is ${\lambda}^{\mu}$-Lipschitz continuous over the input space $\mathcal{X}$ and ${\eta}_k(\textbf{x}) = p(\varphi(\textbf{x})=k|\textbf{x})$ be a class-specific regression function that is ${\lambda}^{\eta}$-Lipschitz continuous for all $k$ where $\varphi(\textbf{x}):\mathcal{X}\rightarrow {\mathbb{R}}$ and $k \in {\mathbb{R}}$. Additionally, given an instance sampled from ${\rho}_X$, there exists a labeled one in its proximity such that their Euclidean distance is bounded by $D$. Assuming for any $\textbf{y}_i$ and $\textbf{y}_j$ within $\mathcal{Y}$,  their Euclidean distance remains bounded by $L$, and $\|w_i - \epsilon\|_2$ is bouned by $R$ where $w_i \sim {\omega}_t$. Under the same assumptions as presented in Theorem~\ref{theorem1}, with a probability of at least $1-\delta (\delta>0)$, we can establish the following inequality: 
+                    $$
+                        \begin{aligned}
+                            &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
+                            &\le
+                            \underbrace{{\lambda}^lD\sqrt{({\mu}_t^2+{\sigma}_t^2)({\lambda}^{\mu}+{\lambda}^{\eta}L^2K)}\!+\!H\sqrt{({\mu}_t - \epsilon)^2\!+\!{\sigma}_t^2}\!+\!\mathcal{R}_p}_{\text{Pseudo-labeling error}} \\
+                            &+ \underbrace{H{\mu}_u + \mathcal{R}_i}_{\text{Invasion error}},
+                        \end{aligned}
+                    $$
+                    wherein,
+                    $$
+                    \begin{aligned}
+                        \mathcal{R}_p = \sqrt{\frac{({\lambda}^l {\tau}_t L + HR)^2\log{\frac{4}{\delta}}}{2s}},
+                        \mathcal{R}_i = \sqrt{\frac{({\tau}_uH)^2\log{\frac{4}{\delta}}}{2(n-s)}}.
+                    \end{aligned}
+                    $$
+                    <br>
+                    So far, the findings from Theorem 1 and Theorem 2 collectively indicate that the pseudo-labeling error correlates with both the quality of pseudo-labels and weights, whereas the invasion error is directly impacted by weights, whether empirically or without sampling bias. Consequently, we pinpoint <span style="color: blue;">two pivotal objectives: improving pseudo-label quality and determining adaptive weights—both essential for optimizing pseudo-labeling and invasion errors.</span> 
+                    <br>
+                    <br>
+                </li>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E</span>)</u></span> <span style="color: red;">Theorem 3: Prior-Free Upper Bound for SSL Error.</span>
+                    <br>            
+                        Consider a Lipschitz continuous regression function ${\Lambda}(\textbf{x}): \mathcal{X}\cup \mathcal{X}_u \rightarrow {\mathbb{R}}$ with constants ${\lambda}^w$ on spaces $\mathcal{X} \cup \mathcal{X}_u$.  For any unlabeled instance $\textbf{x}_i \in \mathcal{X}\cup\mathcal{X}_u$, there exist labeled instances $\textbf{x}_k$ and $\textbf{x}_j^\prime$ within its proximity, bounded by $\hat D$ and $\hat D - \xi$ respectively ($\textbf{y}_k \neq \textbf{y}_j^\prime$, $\xi \ge 0$).  Under the same assumptions of Assumption 1 and Theorem 2, with a probability of at least $1-\delta$($\delta > 0$), the following holds:
+                            $$
+                            \begin{aligned}
+                                &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
+                                & \le \underbrace{({\lambda}^lD\sqrt{{\lambda}^{\mu}+{\lambda}^{\eta}L^2K} + 2H)}_{\text{Pseudo-labeling quality}}\underbrace{({\lambda}^w(\hat D - \xi)+ \epsilon )}_{\text{Adaptive weight}}  \\
+                                &-\epsilon H + \mathcal{R}_p + \mathcal{R}_i.
+                            \end{aligned}
+                            $$
+                        <br>
+                        Theorem 3 provides a prior-free upper bound for SSL error and <span style="color: blue;">identifies the fundamental qualities for improving the quality of pseudo-labels and constructing adaptive weights.</span> These insights are particularly valuable for devising precise strategies related to pseudo-labels and adaptive weights, especially in scenarios with class distribution mismatch.
+                        <br>
+                        <br>
+                </li>
+            </ul>
+        </section>
+
+        <section id="application">
+            <h2>3. Application</h2>
+            <p>An approach supported by the theoretical analysis mentioned above is presented in <span style="color: green;"><u> <span class="roman-numeral">Section IV.</span> </u></span></p>
+        </section>
+
+        <section id="experiment-results">
+            <h2>4. Experiments</h2>
+            <ul>
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E & Appendix </span>)</u></span> <span style="color: red;"> <strong>Datasets.</strong></span> Our experiments are conducted on five datasets, encompassing three benchmark datasets (CIFAR10, CIFAR100, and Tiny-Imagenet), along with an artificial cross-dataset and a realistic controlled noise dataset. The details of the datasets are as follows.
+
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./dataset1.png" alt="dataset1" style="margin:auto;max-width:100%">
+                        <figcaption>Table 1: The number of instances in mismatched CIFAR10, CIFAR100, Tiny-ImageNet, and the cross-dataset. </figcaption>
+                        <!-- The count of categories in labeled and unlabeled data is indicated as ``Categories''. The terms ``Num.'' indicate the count of labeled instances. For unlabeled instances, ``T'' and ``U'' represent the amount of instances from target and unknown categories, respectively, under varying mismatch proportions. -->
+                    </div>
+
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./dataset2.png" alt="dataset2" style="margin:auto;max-width:100%">
+                        <figcaption>Table 2: The number of instances in mismatched realistic dataset. </figcaption>
+                        <!-- The terms ``Num.'' and ``Categories'' are employed to denote the count and categories, respectively, for labeled instances. In the case of unlabeled instances, the number of instances from target and unknown categories is represented as ``T'' and ``U'', respectively, under varying mismatch proportions. The unknown categories in the realistic dataset consist of two components: the noise from 5 target categories ($\text{Noise}_5$) and the noise from the remaining 95 categories ($\text{Noise}_{95}$). -->
+                    </div>
+                </li>
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E & Appendix </span>)</u></span> <span style="color: red;"> <strong>Partial Experimental Results.</strong></span> 
+                    <img class="img_responsive" src="./cifar100.png" alt="cifar100" style="margin:auto;max-width:100%">
+                        <figcaption>Table 3: Experimental results on CIFAR100 under different mismatch proportions. </figcaption>
+                </li>
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E & Appendix </span>)</u></span> <span style="color: red;"> <strong>Ablation Studies.</strong></span> 
+                    <img class="img_responsive" src="./ablation.png" alt="ablation" style="margin:auto;max-width:100%">
+                        <figcaption>Table 4: Ablation studies under different mismatch proportions. </figcaption>
+                </li>
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E & Appendix </span>)</u></span> <span style="color: red;"> <strong>Partial Visualization Results.</strong></span> 
+                    <div class="img" style="text-align:center">
+                    <img class="img_responsive" src="./visual.png" alt="visual" style="margin:auto;max-width:50%">
+                        <figcaption>Figure 2: Visualization of pseudo-labels and weights on CIFAR10 under 60\% mismatch proportion. </figcaption>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="controbution">
+            <h2>5. Contribution</h2>
+            <p>Include relevant code snippets or link to your code repository:</p>
+            <code>
+                // Your code goes here
+            </code>
+        </section>
+
+        <section id="code">
+            <h2>7. Code</h2>
+            <p>Access our research codebase at <a href="https://github.com/RUC-DWBI-ML/research/tree/main/WAD-master" target="_blank">BOOM.</a>
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Pan Du | School of Information, Renmin University of China, Beijing, China</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
