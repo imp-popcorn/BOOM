@@ -124,8 +124,10 @@
         <section id="abstract">
             <h2>1. Abstract</h2>
             <!-- <span style="color: red;">red</span>  -->
-            <p>Semi-supervised learning (SSL) confronts a formidable challenge under class distribution mismatch, wherein unlabeled data contain numerous categories absent in the labeled dataset. Traditional SSL methods undergo performance deterioration in such mismatch scenarios due to the invasion of those instances from unknown categories. Despite some technical efforts to enhance SSL by mitigating the invasion, the profound theoretical analysis of SSL under class distribution mismatch is still under study. Accordingly, in this work,  we propose <strong>B</strong>i-<strong>O</strong>bjective <strong>O</strong>ptimization <strong>M</strong>echanism(BOOM) to theoretically analyze the excess risk between the empirical optimal solution and the population-level optimal solution. Specifically, BOOM reveals that the SSL error is the essential contributor behind excess risk, resulting from both the pseudo-labeling error and invasion error. Meanwhile, BOOM unveils that the optimization objectives of SSL under mismatch are binary: high-quality pseudo-labels and adaptive weights on the unlabeled instances, which contribute to alleviating the pseudo-labeling error and the invasion error, respectively. Moreover, BOOM explicitly identifies the fundamental factors crucial for optimizing the bi-objectives, guided by which an approach is then proposed as a strong baseline for SSL under mismatch.  
-            Extensive experiments on benchmark and real datasets confirm the effectiveness of our proposed algorithm.</p>
+            <p> Semi-supervised learning (SSL) confronts a formidable challenge under class distribution mismatch, wherein unlabeled data contain numerous categories absent in the labeled dataset. Traditional SSL methods undergo performance deterioration in such mismatch scenarios due to the invasion of those instances from unknown categories. Despite some technical efforts to enhance SSL by mitigating the invasion, the profound theoretical analysis of SSL under class distribution mismatch is still under study. Accordingly, in this work,  we propose <strong>B</strong>i-<strong>O</strong>bjective <strong>O</strong>ptimization <strong>M</strong>echanism(BOOM) to theoretically analyze the excess risk between the empirical optimal solution and the population-level optimal solution. Specifically, BOOM reveals that the SSL error is the essential contributor behind excess risk, resulting from both the pseudo-labeling error and invasion error.  Meanwhile, BOOM unveils that the optimization objectives of SSL under mismatch are binary: high-quality pseudo-labels and adaptive weights on the unlabeled instances, which contribute to alleviating the pseudo-labeling error and the invasion error, respectively. Moreover, BOOM explicitly discovers the fundamental factors crucial for optimizing the bi-objectives, guided by which an approach is then proposed as a strong baseline for SSL under mismatch.  Extensive experiments on benchmark and real datasets confirm the effectiveness of our proposed algorithm.
+                </p>
+            <!-- <p>Semi-supervised learning (SSL) confronts a formidable challenge under class distribution mismatch, wherein unlabeled data contain numerous categories absent in the labeled dataset. Traditional SSL methods undergo performance deterioration in such mismatch scenarios due to the invasion of those instances from unknown categories. Despite some technical efforts to enhance SSL by mitigating the invasion, the profound theoretical analysis of SSL under class distribution mismatch is still under study. Accordingly, in this work,  we propose <strong>B</strong>i-<strong>O</strong>bjective <strong>O</strong>ptimization <strong>M</strong>echanism(BOOM) to theoretically analyze the excess risk between the empirical optimal solution and the population-level optimal solution. Specifically, BOOM reveals that the SSL error is the essential contributor behind excess risk, resulting from both the pseudo-labeling error and invasion error. Meanwhile, BOOM unveils that the optimization objectives of SSL under mismatch are binary: high-quality pseudo-labels and adaptive weights on the unlabeled instances, which contribute to alleviating the pseudo-labeling error and the invasion error, respectively. Moreover, BOOM explicitly identifies the fundamental factors crucial for optimizing the bi-objectives, guided by which an approach is then proposed as a strong baseline for SSL under mismatch.  
+            Extensive experiments on benchmark and real datasets confirm the effectiveness of our proposed algorithm.</p> -->
         </section>
 
         <section id="problem">
@@ -245,8 +247,8 @@
                 </li>
                 <li>
                     <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B </span>)</u></span> <span style="color: red;"> <strong>Partial Experimental Results.</strong></span> 
-                    <img class="img_responsive" src="./tiny.png" alt="cifar100" style="margin:auto;max-width:100%">
-                        <figcaption>Table 3: Experimental results on Tiny-ImageNet under different mismatch proportions. </figcaption>
+                    <img class="img_responsive" src="./cifar100.png" alt="cifar100" style="margin:auto;max-width:100%">
+                        <figcaption>Table 3: Experimental results on CIFAR100 under different mismatch proportions. </figcaption>
                 </li>
                 <li>
                     <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-C</span>)</u></span> <span style="color: red;"> <strong>Ablation Studies.</strong></span> 
@@ -267,7 +269,7 @@
             <h2>5. Contribution</h2>
             <ul>
                 <li>
-                    We systematically construct a theoretical framework, named BOOM, which provides guidance on addressing class mismatch problems in SSL. To our knowledge, this is the first comprehensive theoretical study tailored for SSL under class distribution mismatch.
+                    We systematically construct a theoretical framework, named BOOM, which reveals the rationale of SLL under mismatch and provides guidance on addressing this problem in SSL. To our knowledge, this is the first comprehensive theoretical study tailored for SSL under class distribution mismatch.
                 </li>
                 
                 <li>
