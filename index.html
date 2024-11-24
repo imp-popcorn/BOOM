@@ -110,10 +110,11 @@
             Towards a Theoretical Understanding <br> of Semi-Supervised Learning under Class Distribution Mismatch
         </h1>
         <div class="author">
-            <p>Pan Du<sup class="superscript">1</sup>, Suyun Zhao<sup class="superscript">1</sup>, Puhui Tan<sup class="superscript">2</sup>, Zisen Sheng<sup class="superscript">1</sup>,  Zeyu Gan<sup class="superscript">1</sup>, Hong Chen<sup class="superscript">1</sup>, Cuiping Li<sup class="superscript">1</sup></p>
+            <p>Pan Du<sup class="superscript">1</sup>, Ran Wang<sup class="superscript">3</sup>, Suyun Zhao<sup class="superscript">1</sup>, Puhui Tan<sup class="superscript">2</sup>, Zisen Sheng<sup class="superscript">1</sup>,  Zeyu Gan<sup class="superscript">1</sup>, Hong Chen<sup class="superscript">1</sup>, Cuiping Li<sup class="superscript">1</sup>,Xizhao Wang<sup class="superscript">3</sup></p>
             <div class="affiliation">
                 <p><sup class="superscript">1</sup>School of Information, Renmin University of China, Beijing, 100872, China</p>
                 <p><sup class="superscript">2</sup>School of Statistics, Renmin University of China, Beijing, 100872, China</p>
+                <p><sup class="superscript">3</sup>Shenzhen University, Shenzhen, China</p>
                 <!-- Add more affiliations as needed -->
             </div>
         </div>
@@ -146,21 +147,20 @@
         </section>
 
         <section id="main-results">
-            <h2>3. Main Results</h2>
+            <h2>3. Bi-Objective Optimization Mechanism</h2>
             <p> We propose a theoretical analysis of SSL under class distribution mismatch, named BOOM. </p>
             <ul>
                 <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-B</span>)</u></span> <span style="color: red;"><strong>Excess Risk Analysis.</strong></span> 
                 <br>
-                BOOM decouple the excess risk into four compoments: the generalization gap of $\hat h$, represented by $\mathcal{G}_1$; the concentration error, represented by $\mathcal{G}_2$; the empirical risk minimization error (ERM error), represented by $\mathcal{G}_3$; and the SSL error.
+                BOOM decouple the excess risk into three distinct components: the generalization gap of $\hat h$, the concentration error,  and the SSL error,
                     $$
                     \begin{aligned}
                         & \mathcal{L}(\hat h; \tilde{\textbf{w}}) - \mathcal{L}(h^*; \tilde{\textbf{w}})\\
-                        & = \underbrace{[ \mathcal{L}(\hat h; \tilde{\textbf{w}}) - \hat{\mathcal{L}}_{P}(\hat h; \textbf{w})]}_{\mathbf{\mathcal{G}_1}} 
-                        + \underbrace{[\hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}}) - \mathcal{L}(h^*; \tilde{\textbf{w}})]}_{\mathbf{\mathcal{G}_2}}  \\
-                        & + \underbrace{[\hat{\mathcal{L}}_{P}(\hat h; \textbf{w}) -\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}})]}_{\mathcal{G}_3} 
-                        +  \underbrace{[\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})]}_{\mathbf{SSL \ error}}, 
+                        & \le \underbrace{\left| \mathcal{L}(\hat h; \tilde{\textbf{w}}) - \hat{\mathcal{L}}_{P}(\hat h; \textbf{w})\right|}_{\textbf{Generalization gap } } 
+                        + \underbrace{\left|\hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}}) - \mathcal{L}(h^*; \tilde{\textbf{w}})\right|}_{\textbf{Concentration error }}  \\
+                        & + \underbrace{\left|\hat{\mathcal{L}}_{P}(\hat h; \textbf{w}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\right|}_{\textbf{SSL error}}, 
                     \end{aligned}
-                $$
+                    $$
                 <br>
                 BOOM indicates <span style="color: blue;">the SSL error is an essential component concerning the excess risk</span> and is specific to the scenario of class distribution mismatch, primarily resulting from the inconsistency between datasets P and S.
                 <br>
@@ -168,13 +168,13 @@
                 </li>
                 <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span> <span style="color: red;"><strong>Theorem 1: Empirical Upper Bound for SSL Error.</strong></span>
                     <br>
-                    Let $U=\left\{(\textbf{x}, \textbf{y})|(\textbf{x}, \textbf{y}) \in P, \textbf{x} \in \mathcal{X}_u\right\}$ denote a set of instances with size $n-s$ where $\textbf{x}_i$ sampled from ${\rho}_{X_u}$, and $J$ represent the set $\left\{(\textbf{x}_i, \textbf{y}_i, {\hat{\textbf{y}}}_i)\right\}_{i=1}^s$ where $(\textbf{x}_i, {\hat{\textbf{y}}}_i) \in P\backslash U$, $(\textbf{x}_i, \textbf{y}_i)\in S$, and $\textbf{x}_i \in \mathcal{X}$, i.e., $\textbf{x}_i$ sampled from ${\rho}_X$. Assume the loss function $\ell(\cdot, \textbf{y})$ is Lipschitz continuous with a constant ${\lambda}^l$ for all $\textbf{y}$, $h^*$, and $\hat h$, and bounded by $H$ for all $\mathcal{Y} \times \mathcal{Y}$, we have:	
+                    Let $U=\left\{(\textbf{x}, \textbf{y})|(\textbf{x}, \textbf{y}) \in P, \textbf{x} \in \mathcal{X}_u\right\}$ denote a set of instances with size $n-s$, where $\textbf{x}_i$ is sampled from ${\rho}_{X_u}$ and follows the empirical distribution  ${\tilde \rho}_{X_u}$. Similarly, let $\hat\epsilon = \frac{n}{s}\epsilon$, where $\epsilon$ is a constant and $J$ represent the set $\left\{(\textbf{x}_i, \textbf{y}_i, {\hat{\textbf{y}}}_i)\right\}_{i=1}^s$ with $(\textbf{x}_i, {\hat{\textbf{y}}}_i) \in P\backslash U$, $(\textbf{x}_i, \textbf{y}_i)\in S$, and $\textbf{x}_i \in \mathcal{X}$, i.e., $\textbf{x}_i$ is sampled from ${\rho}_X$ and follows the empirical distribution ${\tilde \rho}_X$. Assume the loss function $\ell(\cdot, \textbf{y})$ is Lipschitz continuous with a constant ${\lambda}^l$ for all $\textbf{y}$, $h^*$, and $\hat h$, and bounded by $H$ for all $\mathcal{Y} \times \mathcal{Y}$. Given these assumptions, we can set the constant \( \kappa \) to 2, leading to the following result:
                     $$
-                        \begin{aligned}
-                            &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
-                            & \le   \underbrace{\frac{1}{s}\sum_{(\textbf{x}_i,\textbf{y}_i, {\hat{\textbf{y}}}_i)\in J} \left[w_i {\lambda}^l\| {\hat{\textbf{y}}}_i - \textbf{y}_i \|_2 + \|(w_i-\epsilon)H \|_2 \right]}_{\text{Pseudo-labeling error}}\\
-                            & +   \underbrace{\frac{1}{n-s}\sum_{(\textbf{x}_i, {\hat{\textbf{y}}}_i)\in U}w_iH}_{\text{Invasion error}}.
-                        \end{aligned}
+                    \begin{aligned}
+                    & \left|\hat{\mathcal{L}}_{P}(\hat h; \textbf{w}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\right|\\
+                    & \le   \underbrace{\frac{1}{s}\sum_{(\textbf{x}_i,\textbf{y}_i, {\hat{\textbf{y}}}_i)\in J} \left[w_i \kappa{\lambda}^l\| {\hat{\textbf{y}}}_i - \textbf{y}_i \|_2 + \|(w_i-\hat\epsilon)H \|_2 \right]}_{\text{Pseudo-labeling error}}\\
+                    & +   \underbrace{\frac{\kappa}{n-s}\sum_{(\textbf{x}_i, {\hat{\textbf{y}}}_i)\in U}w_iH}_{\text{Invasion error}}.
+                    \end{aligned}
                     $$
                     <br>
                     Theorem 1 analyzes the upper bound of the SSL error at the empirical level and decouples it into the <span style="color: blue;">pseudo-labeling error and invasion error</span>, providing a foundational theoretical analysis under class distribution mismatch. 
@@ -183,20 +183,20 @@
                 </li>
                 <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-D</span>)</u></span> <span style="color: red;"><strong>Theorem 2: Sampling Bias-Free Upper Bound for SSL Error.</strong></span>
                     <br>
-                    Let $\Phi(\textbf{x}):\mathcal{X}\rightarrow {\mathbb{R}}^K$ denote a labeling function that is ${\lambda}^{\mu}$-Lipschitz continuous over the input space $\mathcal{X}$ and ${\eta}_k(\textbf{x}) = p(\varphi(\textbf{x})=k|\textbf{x})$ be a class-specific regression function that is ${\lambda}^{\eta}$-Lipschitz continuous for all $k$ where $\varphi(\textbf{x}):\mathcal{X}\rightarrow {\mathbb{R}}$ and $k \in {\mathbb{R}}$. Additionally, given an instance sampled from ${\rho}_X$, there exists a labeled one in its proximity such that their Euclidean distance is bounded by $D$. Assuming for any $\textbf{y}_i$ and $\textbf{y}_j$ within $\mathcal{Y}$,  their Euclidean distance remains bounded by $L$, and $\|w_i - \epsilon\|_2$ is bouned by $R$ where $w_i \sim {\omega}_t$. Under the same assumptions as presented in Theorem 1, with a probability of at least $1-\delta (\delta>0)$, we can establish the following inequality: 
+                    Suppose that $\|w_i - \hat\epsilon\|_2$ is bounded by $R$, where $w_i \sim \omega_t$. Under the same assumptions as presented in Lemma 1, Lemma 2, and Theorem 1, with a probability of at least $1-\delta (\delta>0)$, we can establish the following inequality: 
                     $$
                         \begin{aligned}
-                            &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
+                            &\left|\hat{\mathcal{L}}_{P}(\hat h; \textbf{w})  - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\right|\\
                             &\le
-                            \underbrace{{\lambda}^lD\sqrt{({\mu}_t^2+{\sigma}_t^2)({\lambda}^{\mu}+{\lambda}^{\eta}L^2K)}\!+\!H\sqrt{({\mu}_t - \epsilon)^2\!+\!{\sigma}_t^2}\!+\!\mathcal{R}_p}_{\text{Pseudo-labeling error}} \\
-                            &+ \underbrace{H{\mu}_u + \mathcal{R}_i}_{\text{Invasion error}},
+                            \underbrace{{\lambda}^l\kappa D\sqrt{({\mu}_t^2+{\sigma}_t^2)({\lambda}^{\mu}+{\lambda}^{\eta}L^2K)}\!+\!H\sqrt{({\mu}_t - \hat\epsilon)^2\!+\!{\sigma}_t^2}\!+\!\mathcal{R}_p}_{\text{Pseudo-labeling error}} \\
+                            &+ \underbrace{\kappa H{\mu}_u + \mathcal{R}_i}_{\text{Invasion error}},
                         \end{aligned}
                     $$
                     wherein,
                     $$
                     \begin{aligned}
-                        \mathcal{R}_p = \sqrt{\frac{({\lambda}^l {\tau}_t L + HR)^2\log{\frac{4}{\delta}}}{2s}},
-                        \mathcal{R}_i = \sqrt{\frac{({\tau}_uH)^2\log{\frac{4}{\delta}}}{2(n-s)}}.
+                        \mathcal{R}_p = \sqrt{\frac{({\lambda}^l {\tau}_t \kappa L + HR)^2\log{\frac{2}{\delta}}}{2s}},
+                        \mathcal{R}_i = \sqrt{\frac{({\tau}_u \kappa H)^2\log{\frac{2}{\delta}}}{2(n-s)}}.
                     \end{aligned}
                     $$
                     <br>
@@ -205,19 +205,19 @@
                     <br>
                 </li>
                 <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-E</span>)</u></span> <span style="color: red;"><strong>Theorem 3: Prior-Free Upper Bound for SSL Error.</strong></span>
-                    <br>            
-                        Consider a Lipschitz continuous regression function ${\Lambda}(\textbf{x}): \mathcal{X}\cup \mathcal{X}_u \rightarrow {\mathbb{R}}$ with constants ${\lambda}^w$ on spaces $\mathcal{X} \cup \mathcal{X}_u$.  For any unlabeled instance $\textbf{x}_i \in \mathcal{X}\cup\mathcal{X}_u$, there exist labeled instances $\textbf{x}_k$ and $\textbf{x}_j^\prime$ within its proximity, bounded by $\hat D$ and $\hat D - \xi$ respectively ($\textbf{y}_k \neq \textbf{y}_j^\prime$, $\xi \ge 0$).  Under the same assumptions of Assumption 1 and Theorem 2, with a probability of at least $1-\delta$($\delta > 0$), the following holds:
-                            $$
-                            \begin{aligned}
-                                &\hat{\mathcal{L}}_{P}(h^*; {\textbf{w}}) - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\\
-                                & \le \underbrace{({\lambda}^lD\sqrt{{\lambda}^{\mu}+{\lambda}^{\eta}L^2K} + 2H)}_{\text{Pseudo-labeling quality}}\underbrace{({\lambda}^w(\hat D - \xi)+ \epsilon )}_{\text{Adaptive weight}}  \\
-                                &-\epsilon H + \mathcal{R}_p + \mathcal{R}_i.
-                            \end{aligned}
-                            $$
-                        <br>
-                        Theorem 3 provides a prior-free upper bound for SSL error and <span style="color: blue;">identifies the fundamental factors for improving the quality of pseudo-labels and constructing adaptive weights.</span> These insights are particularly valuable for devising precise strategies related to pseudo-labels and adaptive weights, especially in scenarios with class distribution mismatch.
-                        <br>
-                        <br>
+                    <br>   
+                    Consider a Lipschitz continuous regression function ${\Lambda}(\textbf{x}): \mathcal{X}\cup \mathcal{X}_u \rightarrow {\mathbb{R}}$ with constants ${\lambda}^w$ on spaces $\mathcal{X} \cup \mathcal{X}_u$.  For any unlabeled instance $\textbf{x}_i \in \mathcal{X}\cup\mathcal{X}_u$, there exist labeled instances $\textbf{x}_k$ and $\textbf{x}_j^\prime$ within its proximity, bounded by $\hat D$ and $\hat D - \xi$ respectively ($\textbf{y}_k \neq \textbf{y}_j^\prime$, $\xi \ge 0$).  Under the same assumptions of Assumption 1 and Theorem 2, with a probability of at least $1-\delta$($\delta > 0$), the following holds:
+                    $$
+                        \begin{aligned}
+                            & \left|\hat{\mathcal{L}}_{P}(\hat h; \textbf{w})  - \hat{\mathcal{L}}_{S}(h^*; \tilde{\textbf{w}})\right|\\
+                            & \le \underbrace{({\lambda}^l \kappa D\sqrt{{\lambda}^{\mu}+{\lambda}^{\eta}L^2K} + 3H)}_{\text{Pseudo-labeling quality}}\underbrace{({\lambda}^w(\hat D - \xi)+ \hat\epsilon )}_{\text{Adaptive weight}}  
+                            + \mathcal{R}_p + \mathcal{R}_i.
+                        \end{aligned}
+                    $$
+                    <br>
+                    Theorem 3 provides a prior-free upper bound for SSL error and <span style="color: blue;">identifies the fundamental factors for improving the quality of pseudo-labels and constructing adaptive weights.</span> These insights are particularly valuable for devising precise strategies related to pseudo-labels and adaptive weights, especially in scenarios with class distribution mismatch.
+                    <br>
+                    <br>
                 </li>
             </ul>
         </section>
@@ -247,19 +247,21 @@
                 </li>
                 <li>
                     <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B </span>)</u></span> <span style="color: red;"> <strong>Partial Experimental Results.</strong></span> 
-                    <img class="img_responsive" src="./cifar100.png" alt="cifar100" style="margin:auto;max-width:100%">
-                        <figcaption>Table 3: Experimental results on CIFAR100 under different mismatch proportions. </figcaption>
+                    <img class="img_responsive" src="./partial_experiments.png" alt="cifar100" style="margin:auto;max-width:100%">
+                        <figcaption>Figure 2: Experimental results on CIFAR10, CIFAR100, and Tiny-ImageNet under different mismatch proportions. </figcaption>
                 </li>
                 <li>
                     <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-C</span>)</u></span> <span style="color: red;"> <strong>Ablation Studies.</strong></span> 
-                    <img class="img_responsive" src="./ablation.png" alt="ablation" style="margin:auto;max-width:100%">
-                        <figcaption>Table 4: Ablation studies under different mismatch proportions. </figcaption>
+                    <div class="img" style="text-align:center">
+                    <img class="img_responsive" src="./Ablation studies.png" alt="ablation" style="margin:auto;max-width:35%">
+                        <figcaption>Figure 3: Ablation studies under different mismatch proportions. </figcaption>
+                    </div>
                 </li>
                 <li>
-                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-E</span>)</u></span> <span style="color: red;"> <strong>Partial Visualization Results.</strong></span> 
+                    <span style="color: green;"><u>(<span class="roman-numeral">Appendix III-B</span>)</u></span> <span style="color: red;"> <strong>Partial Visualization Results.</strong></span> 
                     <div class="img" style="text-align:center">
                     <img class="img_responsive" src="./visual.png" alt="visual" style="margin:auto;max-width:50%">
-                        <figcaption>Figure 2: Visualization of pseudo-labels and weights on CIFAR10 under 60% mismatch proportion. </figcaption>
+                        <figcaption>Figure 4: Visualization of pseudo-labels and weights on CIFAR10 under 60% mismatch proportion. </figcaption>
                     </div>
                 </li>
             </ul>
@@ -269,7 +271,8 @@
             <h2>5. Contribution</h2>
             <ul>
                 <li>
-                    We systematically construct a theoretical framework, named BOOM, which reveals the rationale of SSL under mismatch and provides guidance on addressing this problem in SSL. To our knowledge, this is the first comprehensive theoretical study tailored for SSL under class distribution mismatch.
+                    We propose the Bi-Objective Optimization Mechanism (BOOM), which 
+                    analyzes excess risk from empirical, sampling bias-free, and prior-free perspectives. To our knowledge, this is the first comprehensive theoretical framework specifically tailored to SSL under class distribution mismatch.
                 </li>
                 
                 <li>
@@ -277,7 +280,7 @@
                 </li>
         
                 <li>
-                    Extensive experiments on benchmark and real datasets demonstrate the effectiveness of the method, thereby verifying BOOM as well.
+                    Extensive experiments on four benchmark datasets and one real dataset validate the proposed theoretical framework, BOOM, and demonstrate the effectiveness of our method.
                 </li>
                
             </ul>
